@@ -1,9 +1,9 @@
-# APT Free Space Checker
+# APT Disk Check
 An python script, implemented as an apt pre-check trigger, for automating disk space checks before APT package installations
 
 ## Overview
 This repository contains a Python script for automating disk space checks before APT package installations. 
-The APT Free Space Checker ensures that sufficient disk space is available on the system before initiating APT package installations. It consists of:
+The APT Disk Check ensures that sufficient disk space is available on the system before initiating APT package installations. It consists of:
 An Ansible playbook is also provided to ease installation.
 
 - An Ansible playbook (`apt-free-space-trigger.yaml`) that configures APT to perform disk space checks before installing packages.
@@ -11,7 +11,7 @@ An Ansible playbook is also provided to ease installation.
 
 ## Why It's Necessary
 
-Running out of disk space during a package installation can lead to a messy system state, incomplete installations, or even system failures. By checking disk space availability before initiating package installations, the APT Free Space Checker helps prevent these issues and ensures smooth system operation.
+Running out of disk space during a package installation can lead to a messy system state, incomplete installations, or even system failures. By checking disk space availability before initiating package installations, the APT Disk Check helps prevent these issues and ensures smooth system operation.
 
 ## Ansible Playbook (`apt-free-space-trigger.yaml`)
 
