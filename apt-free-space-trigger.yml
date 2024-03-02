@@ -1,0 +1,27 @@
+---
+- name: Configure APT free space check
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create apt configuration directory if not exists
+      file:
+        path: /etc/apt/apt.conf.d
+        state: directory
+        mode: '0755'
+
+    - name: Add APT free space check configuration
+      blockinfile:
+        path: /etc/apt/apt.conf.d/00-check-free-space
+        block: |
+          APT::Update::Pre-Invoke {"/root/bin/apt-check-space-trigger.py -e 1000 -w 1500"};
+        create: yes
+        mode: '0644'
+
+    - name: Copy apt-check-space-trigger.py to /root/bin
+      copy:
+        src: /usr/src/ansible/roles/common/files/root/bin/apt-check-space-trigger.py
+        dest: /root/bin/apt-check-space-trigger.py
+        owner: root
+        group: root
+        mode: '0755'
+
