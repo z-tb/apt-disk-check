@@ -70,7 +70,16 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Check available disk space on specified partitions")
     parser.add_argument("-w", "--warning", type=int, help="Minimum amount of free space in megabytes before warning")
     parser.add_argument("-e", "--error-at-mb", type=int, help="Amount of free space in megabytes to generate an error message")
+    parser.add_argument("-p", "--partitions", type=str, help="Comma separated list of partitions (volumes, mount points, etc)")
     args = parser.parse_args()
+
+    if args.partitions:
+      partitions = args.partitions.split(',')
+
+      for partition in partitions:
+         if not os.path.isdir(partition):
+            message(ERROR, f"Partition {partition} is not a valid directory")
+            exit(1)
 
     partitions = ["/boot", "/", "/home", "/tmp", "/usr", "/var"]
     exit_code = 0
