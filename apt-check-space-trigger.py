@@ -73,6 +73,8 @@ if __name__ == "__main__":
     parser.add_argument("-p", "--partitions", type=str, help="Comma separated list of partitions (volumes, mount points, etc)")
     args = parser.parse_args()
 
+    partitions = ["/boot", "/", "/home", "/tmp", "/usr", "/var"]
+
     if args.partitions:
       partitions = args.partitions.split(',')
 
@@ -81,7 +83,6 @@ if __name__ == "__main__":
             message(ERROR, f"Partition {partition} is not a valid directory")
             exit(1)
 
-    partitions = ["/boot", "/", "/home", "/tmp", "/usr", "/var"]
     exit_code = 0
 
     if args.warning is None or args.error_at_mb is None:
